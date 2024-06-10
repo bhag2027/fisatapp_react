@@ -6,11 +6,17 @@ export const ViewFisat = () => {
     const[data,changeData]=useState([])
     
         const fetchData=()=>{
-            axios.get("https://anishpdm.github.io/dummy-api-new/student.json").then(
+            axios.get("https://courseapplogix.onrender.com/getdata").then(
                 (response)=>{
                     changeData(response.data)
                 }
-            ).catch().finally()
+            ).catch(
+                (error)=>{
+                    console.log(error)
+                    alert(error.message)
+
+                }
+            ).finally()
         }
     
     useEffect(()=>{fetchData()},[])
@@ -24,10 +30,10 @@ export const ViewFisat = () => {
                     <div className="col">
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                             <table class="table table-bordered border-primary">
-                                <table class="table">
+                                
                                     <thead>
                                         <tr>
-                                            <th scope="col">ID</th>
+                                        <th scope="col">SNO</th>
                                             <th scope="col">FIRSTNAME</th>
                                             <th scope="col">LASTNAME</th>
                                             <th scope="col">COLLEGE</th>
@@ -43,7 +49,7 @@ export const ViewFisat = () => {
                                         (value,index)=>{
                                             return<tr>
                                             
-                                            <td>{value._id}</td>
+                                            <td>{index+1}</td>
                                             <td>{value.firstname}</td>
                                             <td>{value.lastname}</td>
                                             <td>{value.college}</td>
@@ -58,7 +64,7 @@ export const ViewFisat = () => {
 
                                     </tbody>
                                 </table>
-                            </table>
+                            
                         </div>
                     </div>
                 </div>
